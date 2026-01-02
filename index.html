@@ -16,18 +16,18 @@
       line-height: 1.75;
     }
 
-    /* ===== HERO BANNER (ersetzt das alte blaue header styling) ===== */
+    /* ===== HERO BANNER (Ihr links, Text rechts) ===== */
     .hero {
       position: relative;
       height: 520px;
       width: 100%;
 
-      /* WICHTIG: Pfad/Dateiname muss exakt stimmen */
+      /* Bild */
       background-image: url("images/gründer.png");
-      background-size: contain;
+      background-size: cover;              /* füllt Hero, kein Balken-Look */
       background-repeat: no-repeat;
-      background-position: center center;
-      background-color: #0f172a; /* Fallback links/rechts */;
+      background-position: 20% center;     /* Fokus links: ihr bleibt sichtbar */
+      background-color: #0f172a;           /* Fallback */
 
       display: flex;
       align-items: center;
@@ -36,10 +36,12 @@
     .hero-overlay {
       position: absolute;
       inset: 0;
+
+      /* Links fast klar, rechts stark -> Text sauber lesbar */
       background: linear-gradient(
         to right,
-        rgba(15, 23, 42, 0.15) 0%,
-        rgba(15, 23, 42, 0.65) 55%,
+        rgba(15, 23, 42, 0.05) 0%,
+        rgba(15, 23, 42, 0.55) 45%,
         rgba(15, 23, 42, 0.85) 100%
       );
     }
@@ -53,7 +55,7 @@
     }
 
     .hero-text {
-      max-width: 520px;
+      max-width: 540px;
       margin-left: auto; /* Text rechts */
       color: #fff;
     }
@@ -68,7 +70,7 @@
       font-size: 18px;
       font-weight: 600;
       opacity: 0.9;
-      margin: 0;
+      margin: 0 0 10px;
     }
 
     .hero p {
@@ -79,14 +81,14 @@
 
     .hero .authors {
       font-size: 14px;
-      opacity: 0.8;
+      opacity: 0.85;
       margin-top: 14px;
     }
 
     @media (max-width: 768px) {
       .hero {
         height: 420px;
-        background-position: 30% center;
+        background-position: center top; /* Mobile: lieber zentriert */
       }
 
       .hero-text {
@@ -208,7 +210,7 @@
 
 <body>
 
-  <!-- ===== HERO BANNER (ersetzt die 2 alten header) ===== -->
+  <!-- ===== HERO BANNER ===== -->
   <header class="hero">
     <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -224,6 +226,7 @@
       </div>
     </div>
   </header>
+
 
 
   <main>
