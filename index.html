@@ -16,24 +16,86 @@
       line-height: 1.75;
     }
 
-    header {
-      background: #0f172a;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
+    /* ===== HERO BANNER (ersetzt das alte blaue header styling) ===== */
+    .hero {
+      position: relative;
+      height: 520px;
+      width: 100%;
+
+      /* WICHTIG: Pfad/Dateiname muss exakt stimmen */
+      background-image: url("images/gründer.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: left center;
+
+      display: flex;
+      align-items: center;
     }
 
-    header h1 {
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0.15) 0%,
+        rgba(15, 23, 42, 0.65) 55%,
+        rgba(15, 23, 42, 0.85) 100%
+      );
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .hero-text {
+      max-width: 520px;
+      margin-left: auto; /* Text rechts */
+      color: #fff;
+    }
+
+    .hero h1 {
       font-size: 42px;
-      margin-bottom: 10px;
+      line-height: 1.1;
+      margin: 12px 0;
     }
 
-    header p {
+    .hero h2 {
+      font-size: 18px;
+      font-weight: 600;
+      opacity: 0.9;
+      margin: 0;
+    }
+
+    .hero p {
       font-size: 18px;
       opacity: 0.9;
+      margin: 0;
     }
 
-    /* --- NEU: Layout für Content + Reiter --- */
+    .hero .authors {
+      font-size: 14px;
+      opacity: 0.8;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        height: 420px;
+        background-position: 30% center;
+      }
+
+      .hero-text {
+        margin-left: 0;
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* --- Layout für Content + Reiter --- */
     main {
       max-width: 1100px;
       margin: 0 auto;
@@ -83,7 +145,7 @@
       font-size: 15px;
     }
 
-    /* --- NEU: Rechter Reiter (TOC) --- */
+    /* --- Rechter Reiter (TOC) --- */
     .toc {
       position: sticky;
       top: 24px;
@@ -145,19 +207,23 @@
 
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
+  <!-- ===== HERO BANNER (ersetzt die 2 alten header) ===== -->
+  <header class="hero">
+    <div class="hero-overlay" aria-hidden="true"></div>
 
-  </header>
-  <header>
-    <h2>"Fast menschlich. Und doch unheimlich"</h2>
-    <h1>Uncanny Valley & die Akzeptanz von KI Avataren</h1>
-    <p>Synaptica – Learn Smarter.</p>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h2>"Fast menschlich. Und doch unheimlich"</h2>
+        <h1>Uncanny Valley &amp; die Akzeptanz von KI-Avataren</h1>
+        <p>Synaptica – Learn Smarter.</p>
 
-    <p style="font-size: 14px; opacity: 0.8;">
-      Alessandro Garofalo, Melisa Aydogan, Johannes Eller
-    </p>
+        <p class="authors">
+          Alessandro Garofalo, Melisa Aydogan, Johannes Eller
+        </p>
+      </div>
+    </div>
   </header>
+
 
   <main>
 
