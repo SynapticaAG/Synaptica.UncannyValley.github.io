@@ -6,6 +6,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
+    /* ===== POPUP / MODAL ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    display: none;              /* wird per JS beim Laden auf "flex" gesetzt */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+  }
+
+  .modal {
+    width: min(680px, 100%);
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.35);
+    overflow: hidden;
+  }
+
+  .modal-header {
+    padding: 16px 18px;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.10);
+    font-weight: 700;
+  }
+
+  .modal-body {
+    padding: 16px 18px;
+    line-height: 1.6;
+  }
+
+  .modal-actions {
+    padding: 14px 18px 18px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+
+  .modal-btn {
+    border: 0;
+    padding: 10px 14px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .modal-btn-primary {
+    background: #0f172a;
+    color: #fff;
+  }
+
+  .modal-btn-ghost {
+    background: rgba(15, 23, 42, 0.08);
+    color: #0f172a;
+  }
     html { scroll-behavior: smooth; }
 
     body {
@@ -169,8 +224,60 @@
     }
   </style>
 </head>
+<script>
+  (function () {
+    const overlay = document.getElementById('welcomeModal');
+    const closeBtn = document.getElementById('closeModalBtn');
+    const closeX = document.getElementById('closeModalX');
+
+    function openModal() {
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // verhindert Scrollen im Hintergrund
+    }
+
+    function closeModal() {
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Beim Laden anzeigen
+    window.addEventListener('load', openModal);
+
+    // Buttons schließen
+    closeBtn.addEventListener('click', closeModal);
+    closeX.addEventListener('click', closeModal);
+
+    // Klick auf dunklen Hintergrund schließt auch
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    // ESC schließt
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.style.display === 'flex') closeModal();
+    });
+  })();
+</script>
 
 <body>
+<div class="modal-overlay" id="welcomeModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-header" id="modalTitle">Willkommen!</div>
+    <div class="modal-body">
+      <p style="margin:0 0 10px 0;">
+        Das ist ein kurzer Hinweistext. Du kannst hier z. B. erklären, worum es auf der Seite geht
+        oder einen Disclaimer anzeigen.
+      </p>
+      <p style="margin:0;">
+        Klick einfach auf „Verstanden“, um fortzufahren.
+      </p>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-btn modal-btn-ghost" id="closeModalX" type="button">Schließen</button>
+      <button class="modal-btn modal-btn-primary" id="closeModalBtn" type="button">Verstanden</button>
+    </div>
+  </div>
+</div>
 
   <!-- ===== HERO (Banner als Bild) ===== -->
   <header class="hero">
